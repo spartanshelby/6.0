@@ -1,0 +1,13 @@
+day 1
+https://youtu.be/QhpqBnu5MXo?si=E_cW0eVVuRIzobH1
+25:00 total fixed bugs doesnt matter because developer leaves without impact of seriousness.
+
+Bb us not a race its marathon
+29:00 show only js in burp history then send it to jslinkfinder manually read all endpoints.
+Because developer store cred in js. Also there is a hidden endpoints with openredirect/ssrf paths like /endpoint?redir=url change that url to $$$$$.
+
+31:00 when u find nothing then hit paraminer guess parameter then use that to xss,openred,ssrf,etc.
+
+
+day2
+
