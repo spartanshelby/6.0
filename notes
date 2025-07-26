@@ -5,3 +5,4 @@ then fuzz ?file=/etc/passwd like that
 
 use burp content discovery in engagements
 use arjun tool
+param miner in burp 
