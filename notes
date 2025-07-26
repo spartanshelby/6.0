@@ -4,5 +4,6 @@ if you find any parameter then fuzz with any other like if ?file=1 500 internal 
 then fuzz ?file=/etc/passwd like that
 
 use burp content discovery in engagements
-use arjun x8 tool
-param miner in burp 
+param miner,gap in burp {use result param with below tools}
+use arjun, x8 tool
+
