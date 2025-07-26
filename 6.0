@@ -7,7 +7,48 @@ Bb us not a race its marathon
 Because developer store cred in js. Also there is a hidden endpoints with openredirect/ssrf paths like /endpoint?redir=url change that url to $$$$$.
 
 31:00 when u find nothing then hit paraminer guess parameter then use that to xss,openred,ssrf,etc.
+###########################
 
+Day2
+https://youtu.be/eW6kk-5Jn6k?si=8rCPABYFAd5amIlm
 
-day2
+11:00 Clientside frontend vs serverside backend. 
+Common mistakes is Developers only create security controls on front end clientside.
+so test every function by actually if we change anything via burp thats actually secured or not. Dont assume that was securely configured. So test each and every functionality. 
+Match & replace not a shame
+
+1)Open burp make a single function multiple times see whats around. Move to next repeat the above until all the whole app functionality used. 
+2)Read documentation.
+3)clientside vs server side above
+4)spend more time on target until u dont need the sourcecode. Full App source is on the mind.
+###########################
+
+day 3
+https://youtu.be/K0XYnsgMvYU?si=J6u7AhS_87FT-af_
+
+Xxe on a dotnet .net application in windows server exploit payload dtd file sytem  9/10 a possible to leak file contents.
+ 
+New programming language for increase  2% of system process is waste of time. Like Stick with python then stick
+###########################
+
+Day 5
+https://youtu.be/h55yTacK5HU?si=XK-8DnvxJXIfVKYG
+
+Proxy everything walkthrough and look for openredir,ssrf,etc.,
+
+Post xml instead of json
+Post json instead of xml
+
+Rest api
+Project/id/myproject/id/
+Then remove /project/ look response again remove /id/ ..., one by one
+
+Look for anything in the request that only post,put,patch but not get in the history of each endpoint. Then GET that request may be the pii is present in that.
+
+Concentrate on new features(updated/added new)
+###########################
+
+Day 6
+reflected parameter then go and f with burp colabiflitrator to rce
+
 
