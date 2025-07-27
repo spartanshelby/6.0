@@ -7,4 +7,10 @@ use burp content discovery in engagements
 param miner,gap in burp {use result param with below tools}
 use arjun, x8 tool
 
+2)js 
 jslinkfinder to get all js and manually find all js through burp to automate stuff again use the jslinkfinder 3rd level js's make sure inscope
+
+3)reflected parameter
+reflected parameter tool in burp tool to find reflected parameters then try xss,lfi,rce,collabifilator,ssrf,ssti
+
+
