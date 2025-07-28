@@ -13,7 +13,7 @@ jslinkfinder to get all js and manually find all js through burp to automate stu
 steps
 in burp run live passive scan with inscope rule 
 turn on jslinkfinder
-then goto targets and search .js select all to scan passive 
+then goto targets and search .js select all to scan passive (if we scan from selecting burp history will create duplicate same urls more request & time)
 export the results
 
 3)reflected parameter
