@@ -10,6 +10,11 @@ use paramalyzer to analyze parameter
 
 2)js 
 jslinkfinder to get all js and manually find all js through burp to automate stuff again use the jslinkfinder 3rd level js's make sure inscope
+steps
+in burp run live passive scan with inscope rule 
+turn on jslinkfinder
+then goto targets and search .js select all to scan passive 
+export the results
 
 3)reflected parameter
 reflected parameter tool in burp tool to find reflected parameters then try xss,lfi,rce,collabifilator,ssrf,ssti
