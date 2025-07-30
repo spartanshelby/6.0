@@ -16,6 +16,9 @@ turn on jslinkfinder
 then goto targets and search .js select all to scan passive (if we scan from selecting burp history will create duplicate same urls more request & time)
 export the results
 
+use jsminer with above
+
+
 3)reflected parameter
 reflected parameter tool in burp tool to find reflected parameters then try xss,lfi,rce,collabifilator,ssrf,ssti
 use paramalyzer to analyze parameter
