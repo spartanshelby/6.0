@@ -24,3 +24,5 @@ reflected parameter tool in burp tool to find reflected parameters then try xss,
 use paramalyzer to analyze parameter
 
 4)at the final do http request smuggler
+
+5)at the end activescan++
