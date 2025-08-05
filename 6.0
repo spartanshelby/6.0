@@ -51,4 +51,34 @@ Concentrate on new features(updated/added new)
 Day 6
 reflected parameter then go and f with burp colabiflitrator to rce
 
+Day 9
+https://youtu.be/lfdLJIwgyOY?si=3Q8yOcP6-uplnRoU
+Api docs are friend
+Find in url for any token then search tokens in api if there is a chance of permanent token assigned for all user like root token to particular url path.  Lets figure it out
 
+Day 10
+https://youtu.be/z6OjzwrS3NA?si=EzPt98TYaugXUVTS
+Use active++ with error check extension. That will give a hint to $'s
+
+https://youtu.be/iARr2V1mr6w?si=D1-gONOY6vUDPiiw
+Use  extension hunt with potential vulnerability indicate. Unseen url with bug
+
+Day 12
+https://youtu.be/G1RHa7l1Ys4?si=IQYAVobnOMJqVUZH
+Frontend say no make yes
+
+Sas applications 
+1)Create two orgs
+ invite user from other org
+Find idor pii
+
+2)Next change the password of the user and login then view other organization.
+
+3)intercept invite request
+Change the user id to me
+Change the group id to someone else(second org)
+
+4)invite two times 
+Accept the first one
+Remove that user from group 
+Now that user join again using first invite or second invite.
