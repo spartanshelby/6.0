@@ -72,7 +72,8 @@ Sas applications
  invite user from other org
 Find idor pii
 
-2)Next change the password of the user and login then view other organization.
+2)if add a user without accept invite by user then Next change the password of the user and
+login then view other organization. organisation takeover. then target the admin to attack same way 
 
 3)intercept invite request
 Change the user id to me
