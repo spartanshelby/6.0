@@ -26,3 +26,5 @@ use paramalyzer to analyze parameter
 4)at the final do http request smuggler
 
 5)at the end activescan++
+
+6)turn on burp collab everywhere and browse that it  for find blind ssrf,xss
