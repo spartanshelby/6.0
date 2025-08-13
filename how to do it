@@ -28,3 +28,11 @@ use paramalyzer to analyze parameter
 5)at the end activescan++
 
 6)turn on burp collab everywhere and browse that it  for find blind ssrf,xss
+
+7)path traversal in api
+https://samcurry.net/hacking-starbucks
+/bff/proxy/id like bff is backend for frontend so it was made a request to internal
+so fuzz id before jump into that try find how many paths is present
+like try ../ look response got 403 then ../../ response 403 then do like the result 404 not found
+to find how many directory is present
+
