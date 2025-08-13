@@ -33,6 +33,7 @@ use paramalyzer to analyze parameter
 https://samcurry.net/hacking-starbucks
 /bff/proxy/id like bff is backend for frontend so it was made a request to internal
 so fuzz id before jump into that try find how many paths is present
-like try ../ look response got 404 then ../../ response 404 then do like  tillthe result 400
-to find how many directory is present
+like try ../ look response got 404 then ../../ response 404 then do like till the result 400
+to find how many directory is present. if 400 was result of a 7 "../../" then 6 directory was present
+
 
