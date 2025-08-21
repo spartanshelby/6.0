@@ -2,6 +2,7 @@
 /api/v2/some?id=1    fuzz separately v0,v1,v2,..,  $id$ & no. id=$1$
 if you find any parameter then fuzz with any other like if ?file=1 500 internal server why 500 error cause of file name not provided instead id no. 1.
 then fuzz ?file=/etc/passwd like that
+try xss,sqli,ssrf.ssti,lfi,etc
 
 use burp content discovery in engagements
 param miner,gap in burp {use result param with below tools}
