@@ -19,6 +19,9 @@ export the results
 use jsminer with above
 Burp Suite's built-in tools like "Engagement tools -> Find comments" can also help.
 
+Analyzing External Sources Concept: Parameters might be documented or exposed in places outside the main application.
+Sources:
+API Documentation,GitHub/GitLab Repositories,Wayback Machine,Google Dorking
 
 3)reflected parameter
 reflected parameter tool in burp tool to find reflected parameters then try xss,lfi,rce,collabifilator,ssrf,ssti
