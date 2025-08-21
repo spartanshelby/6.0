@@ -17,6 +17,7 @@ then goto targets and search .js select all to scan passive (if we scan from sel
 export the results
 
 use jsminer with above
+Burp Suite's built-in tools like "Engagement tools -> Find comments" can also help.
 
 
 3)reflected parameter
