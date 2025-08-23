@@ -41,4 +41,5 @@ so fuzz id before jump into that try find how many paths is present
 like try ../ look response got 404 then ../../ response 404 then do like till the result 400
 to find how many directory is present. if 400 was result of a 7 "../../" then 6 directory was present
 
+8)target hdf see don't do response manipulation on get request. do on post/put/patch/delete/.., 
 
