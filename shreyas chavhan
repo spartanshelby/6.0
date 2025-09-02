@@ -29,4 +29,6 @@ I’m planning to pick a niche. familiar with target that nobody else understand
 Top hackers abandon unproductive paths and endpoints relatively quickly after initial checks. They timebox their efforts, dedicating a deadline to their deep dives to avoid getting stuck endlessly to something that might yield any results. If they end up exhausting that dedicated timebox without any significant progress, they then to note that thing down in as much detail as they require to restart their progress if something clicks later, and they move on to something else. 
 What I’m planning to do is — I’ll spend max 10 min per endpoint and if I see it not leading to anything productive but if I feel it might be weird, I’ll note it down and come back to it later. And for more specific deep dives, I’m planning to limit them to 3-7 days max; if that won’t lead to any bugs I’ll note that down and move on to something that’ll get me results.  I’ll come back to my notes only when I’m either done with the target, or got any new idea/lead that makes use of that deep dive concept as a gadget.
 
-9)
+9)I learn by reading, they learn by recreating/reproducing.
+top hackers-They don’t just read write-ups; they actively reproduce vulnerabilities in labs or test environments to truly grasp the concepts and the why behind the exploits. Almost all top hackers recommend building practical skills by practicing in labs or playing CTF competitions. 
+
