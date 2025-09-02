@@ -20,3 +20,13 @@ by reduce duplicates
 
 6)I try to find whatever I can, top hackers aim for P1/P2 impact while considering low impact bugs as gadgets, than bugs.
 I’m planning to shift my priority from finding bugs quick to finding cool bugs. I’ll significantly increase the amount of time I’m learning, reading a lot of bug reports and writeups that talk about these high impact chains, so that I could understand how exactly to approach them. I’ll approach the application with impact first mindset — prioritizing P1/P2 vulns.  I’ll get paid faster, more and will be able to enjoy the journey.
+
+7)I try to be a “jack of all trades”, they specialize and become master of one.
+They become an expert, either on a specific application, a specific area of technology or both. Most of the top hackers in the field have unique competitive advantage. Almost every single person I have studied are master of one thing — a few are masters in source code review, some are masters in chrome exploits, some are masters in automation, some are masters in recon, some are so familiar with their target that nobody else understand that target better than them, etc.
+I’m planning to pick a niche. familiar with target that nobody else understand  target better than me
+
+8)I waste a lot of time testing the same thing and I move very slowly, top hackers care about the speed too.
+Top hackers abandon unproductive paths and endpoints relatively quickly after initial checks. They timebox their efforts, dedicating a deadline to their deep dives to avoid getting stuck endlessly to something that might yield any results. If they end up exhausting that dedicated timebox without any significant progress, they then to note that thing down in as much detail as they require to restart their progress if something clicks later, and they move on to something else. 
+What I’m planning to do is — I’ll spend max 10 min per endpoint and if I see it not leading to anything productive but if I feel it might be weird, I’ll note it down and come back to it later. And for more specific deep dives, I’m planning to limit them to 3-7 days max; if that won’t lead to any bugs I’ll note that down and move on to something that’ll get me results.  I’ll come back to my notes only when I’m either done with the target, or got any new idea/lead that makes use of that deep dive concept as a gadget.
+
+9)
