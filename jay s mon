@@ -1,0 +1,8 @@
+1)browse and capture request using bp
+2)go to tar tab seach .js with inscope only 
+3)if the .js file present in html as dynamic then use gap to find all js urls from .html files 
+  otherwise directly turn on jslinkfinder and run passive scan will give all other jsurls from jslinfider.
+4)find which subdomain or url contains all endpoints that related to tar websites.
+5)then waybacurls & other to collect all possible urls
+6)run all new js to bp and find new endpoints using gap & jslinkfinder
+7)monitor those js urls using jsmon
