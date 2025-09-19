@@ -8,6 +8,8 @@
 7)monitor those js urls using jsmon
 
 
+remove unwanted js
+grep -v -i -E '(jquery|bootstrap|react|googleapis|cloudflare|gtm|analytics|facebook|twitter|fontawesome|jquery|bootstrap|react|vue|angular|moment|lodash|jquery|bootstrap|popper|lodash|moment|axios|react|vue|angular|zone|firebase|chart|d3|fontawesome|polyfill|runtime|vendors|vendor|common|app|manifest|inline|service-worker|gtag|analytics|googletagmanager|google-analytics|googlesyndication|hotjar|sentry|unpkg)' js.txt > filteredjs.txt
 
 
 
