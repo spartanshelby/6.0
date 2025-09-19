@@ -23,4 +23,5 @@ grep -Fxf file1.txt file2.txt
 # Print endpoints in file1.txt that are NOT in file2.txt
 grep -Fvxf burpappendpoint.txt jslinkfinderendpoint.txt
 
-dont fuzz endpoint instead openmultipleurls
+if wont work in intruder then dont fuzz endpoint instead openmultipleurls - cat uniquendpoints.txt | awk '{print "https:/example.com" $0}' > newurlsuniquendpoints4multipleurls.txt
+
