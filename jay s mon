@@ -21,7 +21,6 @@ match burp endpoint with jslinkfinders
 grep -Fxf file1.txt file2.txt
 
 # Print endpoints in file1.txt that are NOT in file2.txt
-grep -Fvxf file2.txt file1.txt
+grep -Fvxf burpappendpoint.txt jslinkfinderendpoint.txt
 
-# Print endpoints in file2.txt that are NOT in file1.txt
-grep -Fvxf file1.txt file2.txt
+dont fuzz endpoint instead openmultipleurls
