@@ -6,3 +6,20 @@
 5)then waybacurls & other to collect all possible urls
 6)run all new js to bp and find new endpoints using gap & jslinkfinder
 7)monitor those js urls using jsmon
+
+
+
+
+
+remove domain
+cat burp_slash_something.txt | awk '{gsub("https://example.com", "")}1' > endpointss.txt
+
+match burp endpoint with jslinkfinders
+# Print matched endpoints (present in both files)
+grep -Fxf file1.txt file2.txt
+
+# Print endpoints in file1.txt that are NOT in file2.txt
+grep -Fvxf file2.txt file1.txt
+
+# Print endpoints in file2.txt that are NOT in file1.txt
+grep -Fvxf file1.txt file2.txt
