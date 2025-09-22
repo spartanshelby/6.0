@@ -16,6 +16,9 @@ grep -v -i -E '(jquery|bootstrap|react|googleapis|cloudflare|gtm|analytics|faceb
 remove domain
 cat burp_slash_something.txt | awk '{gsub("https://example.com", "")}1' > endpointss.txt
 
+unique way to grep endpoint  
+cat yourapire.txt | awk '{print $4}'  | grep /app/ | sort -u > #/endpoints.txt
+
 match burp endpoint with jslinkfinders
 # Print matched endpoints (present in both files)
 grep -Fxf file1.txt file2.txt
