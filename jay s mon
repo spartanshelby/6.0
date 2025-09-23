@@ -21,10 +21,10 @@ cat yourapire.txt | awk '{print $4}'  | grep /app/ | sort -u > #/endpoints.txt
 
 match burp endpoint with jslinkfinders
 # Print matched endpoints (present in both files)
-grep -Fxf file1.txt file2.txt
+grep -Fxf burpurlhistoryurl.txt oldfile.txt > match_same_url_sorted_url.txt
 
 # Print endpoints in file1.txt that are NOT in file2.txt
-grep -Fvxf burpappendpoint.txt jslinkfinderendpoint.txt
+grep -Fvxf match_same_url_sorted_url.txt oldurls.txt
 
 if wont work in intruder then dont fuzz endpoint instead openmultipleurls - cat uniquendpoints.txt | awk '{print "https:/example.com" $0}' > newurlsuniquendpoints4multipleurls.txt
 
