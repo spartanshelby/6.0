@@ -1,0 +1,183 @@
+ Finding a hidden parameter is just step one; the critical step is testing it to see if it's vulnerable.
+ 
+### 1. Insecure Direct Object References (IDOR) - The Most Common Find
+
+This is the most likely vulnerability you'll find with a parameter like `user_id`.
+
+*   **What to do:** If the `user_id` parameter is used to fetch or display user-specific data, change its value to that of another user.
+    *   **Example:** You are user `12345`. The hidden parameter is `<input type="hidden" name="user_id" value="12345">`. Change `POST` or `GET` data to `user_id=67890`.
+
+### 2. Privilege Escalation
+
+Sometimes, `user_id` or similar parameters might be used for authorization checks.
+
+*   **What to do:** If you find a hidden parameter like `role`, `is_admin`, `access_level`, or even `user_id` pointing to an administrator, try manipulating it.
+    *   **Example:** You find `user_id=5` and you suspect `user_id=1` is the admin. Change the value to `1`.
+
+### 3. Parameter Pollution & Business Logic Flaws `user_id=12345&user_id=67890`. 
+
+
+
+1.  **Identify the Request:** Note which request (e.g., `POST /update_profile`) contains the hidden `user_id` parameter.
+2.  **Baseline the Response:** Send the normal request and note the response.
+3.  **Modify and Observe:**
+    *   **Change the value:** Increment/decrement it (`12345` -> `12346`). Do you see another user's data?
+    *   **Fuzz for SQLI:** Send `user_id=12345'`, `user_id=12345 SLEEP(5)-- -`, etc. Look for errors or delays.
+    *   **Fuzz for XSS:** Send `user_id=<img src=x onerror=alert('XSS')>`.
+    *   **Break the Logic:** Send negative numbers, huge numbers, or non-integers.
+    *   **Check for Mass Assignment:** Add a new parameter like `&is_admin=true` to the request *along with* the changed `user_id`.
+4.  **Automate (Optional):** Use Burp Intruder to quickly test a list of common user IDs (e.g., 1 through 1000) to scan for accessible records.
+
+**In summary: A hidden parameter is a direct invitation to test the application's trust boundaries. Your job is to answer the question: "What happens if I change this?" The answer could be nothing, or it could be a critical vulnerability.**
+
+
+
+
+
+
+
+
+
+
+i have a lot of hidden endpoints from target domains and subdomain. how to categories and find bug
+
+Of course. This is an excellent position to be in. A large, unorganized list of endpoints is a goldmine for a bug hunter. The key is to move from chaos to a structured, methodical testing process.
+
+Here’s a comprehensive guide on how to categorize your endpoints and systematically find bugs.
+
+### Phase 1: Categorization & Prioritization
+
+First, you need to make sense of the list. Don't just start testing randomly.
+
+#### Step 1: Parse and Normalize Your Data
+Use a tool or a simple script to parse your list. Extract the following for each endpoint:
+*   **Full URL**
+*   **Domain/Subdomain**
+*   **Path** (e.g., `/api/v1/user/profile`)
+*   **HTTP Method** (if known, e.g., GET, POST, PUT)
+*   **Parameters** (if known, e.g., `?id=123`, `{user_id}` in the path)
+
+#### Step 2: Categorize by Functionality and Sensitivity
+Create folders or lists for these categories. This is the most critical step for efficient testing.
+
+1.  **Authentication & Authorization Endpoints:**
+    *   `/login`, `/logout`, `/register`, `/reset-password`, `/oauth/authorize`
+    *   **Why:** Prime targets for bypasses, brute-force, and logic flaws.
+
+2.  **User-Specific & Profile Endpoints:**
+    *   `/api/v1/users/{id}/profile`, `/api/v1/users/{id}/settings`, `/my-account`
+    *   **Why:** High probability for **IDOR** (Insecure Direct Object Reference).
+
+3.  **Administrative Endpoints:**
+    *   `/admin/`, `/api/admin/deleteUser`, `/cpanel`, `/debug`
+    *   **Why:** Often have powerful functions. Look for **broken access control** (can a regular user access them?).
+
+4.  **File Operation Endpoints:**
+    *   `/upload`, `/download`, `/attachments/{id}`, `/export`
+    *   **Why:** Targets for **Path Traversal**, **XXE**, and Unrestricted File Upload.
+
+5.  **API Endpoints (REST/GraphQL):**
+    *   Anything under `/api/`, `/graphql`, `/v1/`, `/v2/`
+    *   **Why:** Rich sources for **mass assignment**, **injection**, **broken object level authorization** (BOLA/IDOR in APIs), and rate-limiting issues.
+
+6.  **Search and Query Endpoints:**
+    *   `/search`, `/query`, `/lookup?q=`
+    *   **Why:** Classic targets for **SQL Injection** (SQLi), **NoSQL Injection**, and **XSS**.
+
+7.  **Payment and Order Processing Endpoints:**
+    *   `/checkout`, `/api/process-payment`, `/cart/applyCoupon`
+    *   **Why:** Business logic flaws (e.g., negative prices, coupon reuse).
+
+8.  **Miscellaneous & "Weird" Endpoints:**
+    *   `/debug/pprof`, `/backup/`, `/test/`, `/old/`, `/phpinfo.php`
+    *   **Why:** These often expose sensitive information or are misconfigured.
+
+#### Step 3: Prioritize Your Testing
+Don't test all categories with the same intensity at once.
+*   **High Priority:** Authentication, Administrative, Payment, and User-Specific endpoints. These have the highest impact.
+*   **Medium Priority:** File Operations, API Endpoints.
+*   **Low Priority:** Search endpoints, miscellaneous ones.
+
+---
+
+### Phase 2: The Hunting Methodology
+
+Now, with your categorized list, start the systematic hunt.
+
+#### Step 1: Passive Reconnaissance (Without Sending Malicious Payloads)
+*   **Spidering/Crawling:** Feed your endpoints into a tool like **Burp Suite's Scanner** or **OWASP ZAP** to let it discover more links and content.
+*   **Check for Sensitive Information:**
+    *   Access each endpoint with a `GET` request. Look for:
+        *   Hardcoded credentials (API keys, passwords) in JavaScript files or comments.
+        *   Information disclosure (stack traces, server versions, internal IPs).
+    *   Check for backup files (e.g., `.bak`, `.old`, `.zip` versions of the endpoint).
+
+#### Step 2: Active Testing (The Core Work)
+
+**A. Test for Broken Access Control & IDOR:**
+*   **For User-Specific Endpoints:** If you have two test accounts (e.g., `userA` and `userB`), log in as `userA` and try to access `userB`'s resources by changing the `id` parameter.
+*   **For Administrative Endpoints:** While logged in as a normal user, try to access `/admin/deleteUser.php`. Look for missing access controls.
+
+**B. Test for Injection Flaws:**
+*   **SQL Injection:** Use tools like **SQLmap** or manually test parameters with payloads like `'`, `"`, `' OR '1'='1'-- -`.
+*   **Command Injection:** For endpoints that might execute system commands (e.g., `/ping?ip=8.8.8.8`), try payloads like `; whoami`, `| id`, `& dir C:\`.
+*   **XXE:** If you see XML being sent (e.g., in SOAP APIs), test for XXE by injecting an external entity definition.
+
+**C. Test for Business Logic Flaws:**
+*   **Authentication:** Try to bypass the login by using a trailing space in the password (`mypassword `), using `NULL` bytes, or changing the `POST` to a `GET` request.
+*   **Payment:** Can you apply a coupon multiple times? Can you set the product price to a negative number via a parameter? (Check for "Mass Assignment").
+*   **Rate Limiting:** Can you brute-force the login endpoint without getting blocked?
+
+**D. Test for File-Related Vulnerabilities:**
+*   **Path Traversal:** On a file download endpoint like `/download?file=report.pdf`, try `/download?file=../../../../etc/passwd`.
+*   **File Upload:** Try uploading a file with a double extension (`shell.php.jpg`), a trailing space (`shell.php `), or with a malicious `Content-Type`.
+
+**E. Test for Server-Side Request Forgery (SSRF):**
+*   Look for endpoints that take a URL as a parameter (e.g., `/proxy?url=`, `/fetch?target=`). Try to make the server call internal (`http://localhost`) or your own controlled server.
+
+---
+
+### Phase 3: Tooling and Automation
+
+You cannot do this entirely manually. Automate the repetitive parts.
+
+1.  **Reconnaissance & Organization:**
+    *   **Arjun, Parameth:** To find hidden parameters in your endpoints.
+    *   **waybackurls, gau (GoLinkFinder):** You might have these already, but they're essential for gathering.
+    *   A custom Python script to categorize URLs based on keywords.
+
+2.  **Active Scanning:**
+    *   **Burp Suite Professional:** The industry standard. Its active scanner, intruder, and repeater tools are invaluable.
+    *   **ffuf, dirsearch:** For further fuzzing on the endpoints you've found (e.g., `api/v1/user/{FUZZ}`).
+    *   **Nuclei:** **This is your best friend for a large list.** It has thousands of templated checks for specific CVEs, misconfigurations, and vulnerabilities.
+        *   Command: `cat your_endpoints.txt | nuclei -t /path/to/templates -o nuclei_results.txt`
+
+3.  **API-Specific Testing:**
+    *   **Postman/Insonmia:** To organize and test API endpoints.
+    *   **kiterunner:** Excellent for fuzzing API routes and endpoints that traditional tools miss.
+
+### Sample Workflow for a Single Endpoint
+
+Let's take a hypothetical endpoint: `https://api.target.com/v1/users/123/profile`
+
+1.  **Categorize:** User-Specific, API Endpoint. **High Priority for IDOR.**
+2.  **Passive Check:** `GET` the endpoint. Observe the response. Does it return user 123's data? Note the structure.
+3.  **IDOR Test:**
+    *   Change `123` to `124` in Burp Repeater. Do you get another user's data? **Critical Bug.**
+    *   Change the HTTP method from `GET` to `PUT` or `DELETE`. Can you modify or delete other users' data?
+4.  **Parameter Testing:**
+    *   If it has parameters like `?format=json`, try `?format=../../../../etc/passwd` (Path Traversal) or `?format=<script>alert(1)</script>` (XSS).
+    *   Use Arjun to find hidden parameters.
+5.  **Automated Scan:**
+    *   Send the request to Burp's active scanner.
+    *   Run it through Nuclei.
+6.  **Document:** Whether you find a bug or not, note it down. A "Not Vulnerable" list is just as important to avoid retesting the same thing.
+
+### Final Pro Tips
+
+*   **Don't Neglect the "Weird":** That `/debug/pprof` endpoint might be leaking goroutine stacks with sensitive data. That `/backup.zip` might contain the source code.
+*   **Respect Scope:** Always check the target's bug bounty policy. Do not test out-of-scope assets or use destructive testing (like `DELETE` methods) without permission.
+*   **Think Like a Developer:** Ask yourself, "What did the developer assume the user would *never* do?" Then, do that.
+*   **Persistence Pays Off:** Finding critical bugs in a huge list is a marathon, not a sprint. Your organized approach will give you a significant edge over others who are just spraying and praying.
+
+Good luck! You have a treasure trove of potential findings. A structured approach will help you mine it effectively.
