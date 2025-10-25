@@ -38,6 +38,121 @@ Sometimes, `user_id` or similar parameters might be used for authorization check
 
 
 
+what do i do with hidden endpoints,parameters. how to combine those to find bugs
+Of course! This is a critical skill for advanced bug hunting, especially in API security. Finding hidden endpoints and parameters is like getting the "developer's edition" of the application, revealing functionality that wasn't meant for public eyes.
+
+Let's break this down into a systematic process.
+
+### Part 1: Finding Hidden Endpoints & Parameters
+
+You can't test what you can't see. Here’s how to discover them.
+
+#### A) Finding Hidden Endpoints
+
+Endpoints are the doors to the application's functionality (e.g., `/api/v1/users`).
+
+1.  **Passive Reconnaissance (The Quiet Approach):**
+    *   **JavaScript Files:** This is the #1 source. Use your browser's DevTools (F12 -> Sources/Network) or a tool like **Burp's "JS Miner"** extension to scan all `.js` files. Look for:
+        *   `fetch()`, `axios.get()`, `$.ajax()` calls.
+        *   Strings that look like paths: `/api/admin/deleteUser`, `/internal/exportData`.
+    *   **Source Code Repositories:** Search GitHub, GitLab, etc., for the target's name. Developers often leave API keys, test endpoints, and internal paths in commits. Use tools like **GitHunter** or manual dorking (e.g., `"target.com" AND "api/v1"`).
+    *   **Archived Pages:** Use the **Wayback Machine** (`web.archive.org`). Old versions of the site might have endpoints that are still live but no longer linked.
+
+2.  **Active Reconnaissance (The Knocking Approach):**
+    *   **Wordlists & Fuzzing:** Use tools like **ffuf**, **gobuster**, or **DirSearch** with massive API/endpoint wordlists.
+        *   **Popular Wordlists:** `raft-large-directories.txt`, `SecLists/Discovery/Web-Content/`, `api-wordlist` from SecLists.
+        *   **Targeted Fuzzing:** If you find `/api/v1/users`, fuzz for `/api/v1/admin`, `/api/v1/config`, `/api/v2/users`, etc.
+    *   **Virtual Host Enumeration:** Sometimes, `api.internal.target.com` is different from `www.target.com`. Fuzz for subdomains using tools like **Amass**, **Subfinder**, or **ffuf**.
+
+#### B) Finding Hidden Parameters
+
+Parameters are the knobs and levers for those doors (e.g., `?id=1&debug=true`).
+
+1.  **Passive Reconnaissance:**
+    *   **JavaScript Files (Again):** Look for variable names in functions. Parameters like `isAdmin`, `debug`, `test`, `export`, `callback` are often hardcoded.
+    *   **HTTP Archive Files (.har):** If you can get a HAR file from a developer or generate one during normal use, it can reveal parameters used by the live application.
+
+2.  **Active Reconnaissance:**
+    *   **Parameter Mining with Arjun:** **This tool is a game-changer.** Arjun (`arjun -u <url>`) is specifically designed to find hidden parameters by using a massive list of common parameter names and sending specially crafted requests to identify which parameters are actually accepted by the endpoint.
+    *   **Wordlist Fuzzing:** Use `ffuf` or `Burp Intruder` with parameter wordlists (e.g., `SecLists/Discovery/Web-Content/burp-parameter-names.txt`).
+    *   **Analyzing Similar Endpoints:** If `/api/v1/users/1` has parameters `name` and `email`, try those same parameters on `/api/v1/admin/logs`.
+
+---
+
+### Part 2: The "How to Combine" - A Methodology for Finding Bugs
+
+Now for the fun part. You have a list of hidden endpoints and parameters. Here’s a structured way to combine them to find vulnerabilities.
+
+#### Step 1: Categorize and Prioritize
+
+*   **Endpoints:**
+    *   **Admin:** `/admin/deleteUser`, `/api/internal/config`
+    *   **User:** `/api/v2/profile/upgrade`
+    *   **Utility:** `/debug`, `/export`, `/backup`
+*   **Parameters:**
+    *   **Functional:** `debug`, `test`, `format`, `callback`
+    *   **Privilege:** `is_admin`, `role`, `user_id`
+    *   **Destructive:** `delete`, `overwrite`, `purge`
+
+**Priority #1:** Combine **Admin/Destructive Endpoints** with **Privilege Parameters.**
+
+#### Step 2: The Testing Matrix - Common Bug Scenarios
+
+| Hidden Endpoint (Found via Fuzzing) | Hidden Parameter (Found via Arjun/JS) | How to Combine & Test for Bugs |
+| :--- | :--- | :--- |
+| **`/api/admin/createUser`** | **`role`** | **Broken Access Control (BAC):** Can a low-privileged user access this endpoint? If so, can they set `?role=admin` to create an admin user? |
+| **`/api/v1/user/[id]`** | **`is_admin`** | **BAC / IDOR:** Change the `[id]` to another user's ID. Does the `is_admin=true` parameter now make *that* user an admin? |
+| **`/api/logs`** | **`format`** | **Server-Side Request Forgery (SSRF):** Try `?format=https://yourburpcollaborator.com`. **Command Injection:** Try `; whoami` or `| ls /`. |
+| **`/api/exportData`** | **`debug`** | **Information Disclosure:** `?debug=true` might reveal stack traces, API keys, or internal system paths. |
+| **`/api/graphql`** (a common hidden endpoint) | **(Any GraphQL field)** | **GraphQL-specific:** Use **InQL** (Burp Extension). Try introspection queries to map the entire schema. Look for mutations (actions like `deletePost`) that you shouldn't have access to. |
+| **Any JSON endpoint** | **`callback`** | **JSONP / XSS:** If the endpoint returns JSON, adding `?callback=alert(1)` might reflect your input, leading to XSS. |
+| **`/api/search`** | **`query`** | **SQL Injection (SQLi):** Fuzz the `query` parameter with SQLi payloads. **NoSQLi:** If it's a NoSQL DB, try `?query[$ne]=null`. |
+
+#### Step 3: Practical Attack Walkthrough
+
+Let's imagine you found the following:
+
+*   **Endpoint:** `/api/internal/userExport` (found by fuzzing JS files)
+*   **Parameter:** `filename` (found by using Arjun on the endpoint)
+
+**Your attack process:**
+
+1.  **Understand the Function:** It likely exports user data into a file.
+2.  **Test for Path Traversal:**
+    *   `GET /api/internal/userExport?filename=../../../../etc/passwd`
+    *   `GET /api/internal/userExport?filename=..\..\..\windows\system32\drivers\etc\hosts`
+3.  **Test for Command Injection:**
+    *   `GET /api/internal/userExport?filename=report.pdf; whoami`
+    *   `GET /api/internal/userExport?filename=report.pdf | cat /etc/passwd`
+4.  **Test for SSRF:** Could it fetch a file from a URL?
+    *   `GET /api/internal/userExport?filename=http://169.254.169.254/latest/meta-data/` (AWS Metadata)
+5.  **Test for Access Control:** Can a non-admin user access this endpoint? Try it without an admin session.
+
+### Essential Toolbox
+
+*   **Proxy & Scanner:** **Burp Suite Professional** (with Autorize, JS Miner, InQL extensions) or **OWASP ZAP**.
+*   **Fuzzer:** **ffuf** (fast, command-line) or **Burp Intruder**.
+*   **Parameter Discovery:** **Arjun**.
+*   **Wordlists:** **SecLists** repository.
+*   **Collaborator:** **Burp Collaborator** or **Interactsh** for detecting blind vulnerabilities (SSRF, Blind SQLi, Out-of-band Command Injection).
+
+### Final Pro Tips
+
+*   **Don't Trust Client-Side Controls:** Hidden parameters often bypass client-side validation. Even if the UI doesn't have a "role" field, the backend might still accept it.
+*   **Think Like a Developer:** Why would an endpoint/parameter be hidden? It's often for internal use, debugging, or admin functions. These are prime targets for privilege escalation.
+*   **Automate, but Also Manual Test:** Automate the discovery, but the exploitation often requires manual, creative testing to understand the application's logic.
+*   **Chain Findings:** A hidden `debug` parameter that gives you more information can help you exploit a hidden `admin` endpoint you found elsewhere.
+
+By systematically discovering hidden assets and then strategically combining them to test for common vulnerability patterns, you dramatically increase your chances of finding severe, business-logic flaws that automated scanners will never see.
+
+
+
+
+
+
+
+
+
 
 i have a lot of hidden endpoints from target domains and subdomain. how to categories and find bug
 
