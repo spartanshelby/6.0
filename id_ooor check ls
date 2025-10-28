@@ -79,4 +79,58 @@ float
 /api/v5/id/6     ---- 403 
 /api/v5/id/6.099   -- 200 
 
+=========================================================================================================
+medium.com
+https://medium.com/@bxrowski0x/bypassing-an-idor-a-couple-of-times-4d67555a1545
 HTTP instead: GET, POST, PUT, DELETE, PATCH,
+Adding an extension to the end of the user ID e.g. “ /api/v4/user/1.json “
+Sending the request without IDs e.g. “ /api/v4/user/ “
+Sending the request without IDs e.g. “ /api/v4/users/ “
+Changing the ID with an asterisk symbol e.g. “ /api/v4/user/* “
+Path Traversal e.g. “ /api/v4/user/22652/../1
+Sending the request with ‘page’ or ‘pageSize’ parameter e.g. “ /api/v4/user/?page=1 
+
+----------
+Changing the Request method to PUT and added the ‘_method’ parameter to the body with PATCH as the value
+"PUT /api/something
+contentlength
+useragent
+
+_method=PATCH"    
+
+But sometimes the response was 200 OK
+------------
+
+PUT /api/v4/user/1?include=firstname%2Clastname%2CdisplayName%2Cemail%2Cimage%2CisMe HTTP/2  like this have to get all details
+------------
+
+PUT /api/v4/user/5?include=firstname%2Clastname%2CdisplayName%2Cemail%2Cimage%2CisMe HTTP/2
+cookie
+
+id=6 
+
+response 200 ok
+
+The parameter was used in other different requests it was getting users statistics and some different stuff
+then using some fuzzing I found that the same parameter can disclose the name the email and a few different stuff.
+make sure fuzz with own id to find which parameter gives all details. and use that id to impact higher the idor
+--------------
+
+
+https://medium.com/@bxrowski0x/how-to-find-idors-like-a-pro-158cf23baf23
+example 1
+put /api/som/thing
+
+{ 
+"someids whatever":"546-54456464-6464"
+}
+ it give 204 no content with "someone elses id" which made me confident that something was happening.
+
+definitely try get request that to trigger idor
+  -------
+
+example 2
+parameters I’ve encountered earlier in other applications page size
+/api/users?page=1&size=1 
+When the size parameter value is incremented it retrieves different users.
+
