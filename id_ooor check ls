@@ -1,3 +1,5 @@
+use paramalayzer first
+
 https://youtu.be/lfFfJTEFK4Y?si=JUqzTyeR9-T26hr8
 amrsec
 
@@ -89,6 +91,13 @@ Sending the request without IDs e.g. “ /api/v4/users/ “
 Changing the ID with an asterisk symbol e.g. “ /api/v4/user/* “
 Path Traversal e.g. “ /api/v4/user/22652/../1
 Sending the request with ‘page’ or ‘pageSize’ parameter e.g. “ /api/v4/user/?page=1 
+-----
+
+https://github.com/KathanP19/HowToHunt/blob/master/IDOR/IDOR.md
+change content type to xml/json  like text/xml, text/x-json, and similar
+{“id”:19} → {“id”:[19]} try in array  -> json
+GET /api/v1/user/profile?uid=123  -> uid[]=123&uid[]=124` (array-based IDOR). HEader based
+
 
 ----------
 Changing the Request method to PUT and added the ‘_method’ parameter to the body with PATCH as the value
@@ -133,4 +142,6 @@ example 2
 parameters I’ve encountered earlier in other applications page size
 /api/users?page=1&size=1 
 When the size parameter value is incremented it retrieves different users.
+-------
+
 
