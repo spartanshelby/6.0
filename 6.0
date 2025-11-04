@@ -83,3 +83,200 @@ Change the group id to someone else(second org)
 Accept the first one
 Remove that user from group 
 Now that user join again using first invite or second invite.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Godfatherorwa automater
+Yassine abou manul50/auto50
+Zxeano man u al
+Mathiyas carlas full automation
+Archangeldday Manual
+Jasmon laundry -jr0ch17 xss&manual guy 
+Victor "doomer hunter" manual guy 🫶
+Gr3pme manual guy
+
+
+Day 1
+https://youtu.be/QhpqBnu5MXo?si=E_cW0eVVuRIzobH1
+25:00 total fixed bugs doesnt matter because developer leaves without impact of seriousness.
+
+Bb us not a race its marathon
+29:00 show only js in burp history then send it to jslinkfinder manually read all endpoints. Because developer store cred in js. Also there is a hidden endpoints with openredirect/ssrf paths like /endpoint?redir=url change that url to $$$$$.
+
+31:00 when u find nothing then hit paraminer guess parameter then use that to xss,openred,ssrf,etc.
+
+
+
+Day2
+https://youtu.be/eW6kk-5Jn6k?si=8rCPABYFAd5amIlm
+
+11:00 Clientside frontend vs serverside backend. 
+Common mistakes is Developers only create security controls on front end clientside.
+so test every function by actually if we change anything via burp thats actually secured or not. Dont assume that was securely configured. So test each and every functionality. 
+Match & replace not a shame
+
+1)Open burp make a single function multiple times see whats around. Move to next repeat the above until all the whole app functionality used. 
+2)Read documentation.
+3)clientside vs server side above
+4)spend more time on target until u dont need the sourcecode. Full App source is on the mind.
+
+
+
+day 3
+https://youtu.be/K0XYnsgMvYU?si=J6u7AhS_87FT-af_
+
+Xxe on a dotnet .net application in windows server exploit payload dtd file sytem  9/10 a possible to leak file contents.
+ 
+New programming language for increase  2% of system process is waste of time. If you Like Stick with python then stick
+
+Day 5
+https://youtu.be/h55yTacK5HU?si=XK-8DnvxJXIfVKYG
+
+Proxy everything walkthrough and look for openredir,ssrf,etc.,
+
+Post xml instead of json
+Post json instead of xml
+
+Rest api
+Project/id/myproject/id/
+Then remove /project/ look response again remove /id/ ..., one by one
+
+Look for anything in the request that only post,put,patch but not get in the history of each endpoint. Then GET that request may be the pii is present in that.
+
+Concentrate on new features(updated/added new)
+
+Day 9
+https://youtu.be/lfdLJIwgyOY?si=3Q8yOcP6-uplnRoU
+Api docs are friend
+Find in url for any token then search tokens in api if there is a chance of permanent token assigned for all user like root token to particular url path.  Lets figure it out
+
+Day 10
+https://youtu.be/z6OjzwrS3NA?si=EzPt98TYaugXUVTS
+Use active++ with error check extension. That will give a hint to $'s
+
+https://youtu.be/iARr2V1mr6w?si=D1-gONOY6vUDPiiw
+Use  extension hunt with potential vulnerability indicate. Unseen url with bug
+
+Day 12
+https://youtu.be/G1RHa7l1Ys4?si=IQYAVobnOMJqVUZH
+Frontend say no then have to make yes
+
+Sas applications 
+1)Create two orgs
+ invite user from other org
+Find idor pii
+
+2)Next change the password of the user and login then view other organization.
+
+3)intercept invite request
+Change the user id to me
+Change the group id to someone else(second org)
+
+4)invite two times 
+Accept the first one
+Remove that user from group 
+Now that user join again using first invite or second invite.
+
+Day13
+https://youtu.be/0-o3_NumvbI?si=QA5DwGwLCrSAQ9ug
+
+1)find bug if it was low then try chaining to critical&high impact.
+ think before report a low
+
+2) match&replace to use payload 
+Like match ssti then replace with {6*6}
+
+3)ssti in email userid-7*7@wearehackerone.com
+If trigg 49 🔥
+
+4)if u find sql in future  then useit
+
+5)if a option like convert file then view all format. Then upload payload execute to output format. Like one of output format .xift then try xxe,xml payload to trigger by convert file
+
+6)path traverse
+https://samcurry.net/hacking-starbucks
+
+Day14
+https://youtu.be/dAQftuNu1VU?si=t9ZQbX3xlpLXCy8D
+
+Coolway to improve our coverage while testing bac bussiness logic was find hidden parameter,similar name parameter in js.
+
+Second level -like test one payment method then what about other external payments. Thats like test every possiblity. 
+
+Authmatrix/authx would be great way to find 10 levels of access users but it was complex.
+
+New hunter will hunt on public program with spider sense and test every endpoint
+
+
+Day 28
+https://youtu.be/5WIRyMA0FfM?si=loClf0UJceFm3HPH
+1:08:00
+User object example we have active inactive invited revoked banned deleted etc., like different states
+We find every contexts(user,etc.,) with states. We can find that properties of contexts from some endpoints. Then hit the every states on main endpoint to expose something.
+If that expose user tokens then try ato
+
+2)browser and find more functionality make better ideas to exploit. 90% of the time browsing will pays you well.
+
+3)if learn&hunt ssrf something for future 
+See 1:18:00
+
+
+Day 32
+https://youtu.be/yxc2jVKE-jo?si=dNo6lemrBIKyo0tu
+
+1)58:00 Cheese have holes
+Every private programs are small cheese with small holes.
+Every giant public programs are bigger cheese with bigher holes.
+
+So Every company is cheese for me😂
+
+2)like g-drive has a way like the features/something like every single day the code,js,etc., are changin. Comeback everyday next day its definetely change. It will bring me like don't choosing amazing company targets on h1,bugcrowd,etc. It will make him beginner to a sucessful hunter. Reduced to 30 companies like this type of company changing its code everyday.
+
+
+
+https://youtu.be/iKARfwjmRwI?si=kC0_6tDtC2K5xA15
+1)Procastination
+Fear of not having a bug or unable to hack. so Learn hell learn hell learn hell. Where to start. But when to start. Just start👿 working 
+
+2)36:00 take notes. write down everthing comeback later. Then hack
+47:00 enter all endpoint. Write what users do what can i do with
+
+Day33 
+https://youtu.be/Xw1F-jd21z0?si=CbqMm_tU8BY4rGES
+1)choose program pays minimum medium bounty is 750. Because we end up with more medium and less critical. So if unable to escatlate critical but medium pays off
+
+2) 1:01:00 when return back to our target again run gau to look new url/feature that was deployed by the company. Look for idor,path traversal,bac,cache 
+
+3) 1:14:00 there is the secret methodology for success
+
+Day 44 watch again there is a some high level stuff dont know learn it
+https://youtu.be/iFtcathflSw?si=8A04cbwTwQ7qcu0s
+ Sam curry
+
+You dont wanna hack this big company because its hard they are secure
+Ans: i went to airport and try to hack a robot in a coffee machine. I try harder buy dont find single vulnerability. And then i move to some airlines company in airport i find a critical vulnerabilty quicker. So there is no judgements 
+
+38:00
+I need to hack i need to -dont
+I want to hack 🔥 - do
+
+Its not about money its about hack
+
+
+Days66
+https://youtu.be/Env8L2SlayM?si=RrDf12sby6HCdZNE
+
+Full time Bug bounty
+Want to bypass csp in github lets watch
+
