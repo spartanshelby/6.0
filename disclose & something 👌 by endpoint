@@ -1,28 +1,20 @@
-Let me try to clarify the concept with an example.
-
-Imagine you're attacking a user object in a web application, and you want to understand which endpoints expose properties of that object. The user object can have different states, such as:
-
-* Active
-* Inactive
-* Deleted
-* Invited
-* Revoked
-* Banned
+lama ai 
+Imagine you're attacking a user object in a web application, and you want to understand which endpoints expose properties of that object. The user object can have different states, 
+such as: Active Inactive Deleted Invited Revoked Banned
 
 Let's say there's an endpoint `/users/{userId}` that returns information about a user. Normally, this endpoint might be accessible to all users and returns public information.
-
 However, when the user object is in a specific state, such as "invited", hitting the same endpoint might expose additional properties, like an invitation token.
 
 For example:
-
 * When the user is active, the endpoint returns: $$ {"id": 1, "username": "john"} $$
 * When the user is invited, the endpoint returns: $$ {"id": 1, "username": "john", "invitationToken": "abc123"} $$
 
-In this case, the endpoint `/users/{userId}` exposes different properties of the user object depending on its state. If an attacker can iterate through different states of the user object and hit the same endpoint, they might be able to access sensitive information, like the invitation token.
+In this case, the endpoint `/users/{userId}` exposes different properties of the user object depending on its state. If an attacker can iterate through different states 
+of the user object and hit the same endpoint, they might be able to access sensitive information, like the invitation token.
 
 This can lead to zero-interaction attacks, such as account takeovers, if the attacker can use the exposed information to manipulate the user object.
-
-By documenting which endpoints expose which properties of an object and how they change depending on the object's state, you can identify potential vulnerabilities and creative attack vectors.
+By documenting which endpoints expose which properties of an object and how they change depending on the object's state, you can identify potential vulnerabilities 
+and creative attack vectors.
 
 Here are some key points:
 
@@ -37,3 +29,27 @@ Example:
 * Exposed properties:
 	+ Active: `id`, `username`
 	+ Invited: `id`, `username`, `invitationToken`
+
+
+deepseek
+Different Endpoints Expose Different Properties:
+Endpoint A: /api/users/[id] (Normal user view)				❌ Safe - no sensitive data
+Endpoint B: /api/admin/users/[id] (Admin view)				❌ Admin only - properly protected
+Endpoint C: /api/invitations/[id] (Invitation state view)	❓ Wait... who can access this endpoint? 
+Endpoint C might be accessible to ALL users because it's designed to let people see their own invitations. But if you can access OTHER users' invitation states...
+
+attack by 
+1.Step 1: Find User in "Invited" State					GET /api/users/search?status=invited		response "id": 2017, or whatever juicy
+2.Step 2: Access Invitation Endpoint with Target ID		GET /api/invitations/2017					response "invitation_token": "invite_abc123def456",  or whatever juicy
+3.Step 3: Take Over Account								POST /api/auth/activate						result Boom! Zero-interaction account takeover.
+
+scenario 2
+Project Object States 
+1.Normal Project View:
+2.Archived Project View (different endpoint):
+3.deleted project view
+
+Systematic Approach to Find These
+For a User object, document all possible states: ACTIVE, INVITED, SUSPENDED, DELETED, PASSWORD_RESET,EMAIL_UNVERIFIED, TRIAL, EXPIRED, ADMIN, BANNED
+
+
