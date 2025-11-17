@@ -50,6 +50,8 @@ Project Object States
 3.deleted project view
 
 Systematic Approach to Find These
-For a User object, document all possible states: ACTIVE, INVITED, SUSPENDED, DELETED, PASSWORD_RESET,EMAIL_UNVERIFIED, TRIAL, EXPIRED, ADMIN, BANNED
+1)For a User object, document all possible states: ACTIVE, INVITED, SUSPENDED, DELETED, PASSWORD_RESET,EMAIL_UNVERIFIED, TRIAL, EXPIRED, ADMIN, BANNED
+2)Step 2: Find Endpoints for Each State /invite, /invitation, /pending, /activation
+Pro Tip for Bug Bounties- 	When you find ONE of these issues, immediately search for the pattern across the entire application:
 
 
