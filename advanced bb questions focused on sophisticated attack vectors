@@ -1,0 +1,80 @@
+Here are advanced bug bounty hunting questions focused on sophisticated attack vectors:
+
+## Object State & Property Exposure
+1. Which endpoints expose different properties of the same object based on its state?
+2. How can invitation tokens be leaked through normal user endpoints?
+3. What object states (invited, suspended, archived) expose sensitive properties?
+4. How to find zero-interaction account takeover via state-dependent endpoints?
+5. Where do objects reveal different data when accessed through different workflows?
+
+## Business Logic Flaws
+6. How to exploit negative pricing in new payment flows?
+7. Where can race conditions be exploited in inventory/balance systems?
+8. How to bypass business limits using integer overflow?
+9. What workflow steps can be skipped or reordered?
+10. How to exploit time-based logic (free trials, expiration)?
+
+## Authentication & Authorization Edge Cases
+11. How to bypass MFA using enrollment/repair flows?
+12. Where can horizontal privilege escalation occur in new features?
+13. How to exploit OAuth state parameter weaknesses?
+14. What endpoints miss authorization checks for specific object states?
+15. How to chain low-impact issues into account takeover?
+
+## API & Endpoint Security
+16. Where does the API expose different data based on content-type?
+17. How to find mass assignment in new JSON endpoints?
+18. What GraphQL queries expose excessive data?
+19. How to exploit batch operations for privilege escalation?
+20. Where do webhooks allow SSRF or replay attacks?
+
+## File Processing & Uploads
+21. How to achieve RCE through SVG file upload validation?
+22. Where can XXE be found in new import/export features?
+23. How to bypass cloud storage signed URL security?
+24. What file parsing vulnerabilities exist in new document processors?
+25. How to exploit PDF generators for SSRF?
+
+## Third-Party Integrations
+26. Where do OAuth implementations mishandle redirect_uri?
+27. How to exploit webhook signature verification flaws?
+28. What SSRF vectors exist in new image processing services?
+29. How to bypass payment gateway security in test modes?
+30. Where do API key generation algorithms have weaknesses?
+
+## Configuration & Deployment Flaws
+31. How to access staging features via host header manipulation?
+32. Where are internal services exposed through new features?
+33. How to exploit CORS misconfigurations in new endpoints?
+34. What debug endpoints are exposed in production?
+35. How to find secret keys in client-side bundles?
+
+## Cryptography & Tokens
+36. Where are JWT tokens poorly validated?
+37. How to predict or brute-force invitation tokens?
+38. What session management flaws exist in new mobile apps?
+39. How to exploit weak random number generation?
+40. Where are encryption keys exposed in new features?
+
+## Mobile-Specific Attacks
+41. How to exploit deep links in new mobile features?
+42. Where does mobile API have different security than web?
+43. How to bypass certificate pinning in new app versions?
+44. What sensitive data is cached in new mobile workflows?
+45. How to exploit biometric authentication flaws?
+
+## Cloud & Infrastructure
+46. Where do new features expose AWS S3 buckets?
+47. How to exploit serverless function authorization flaws?
+48. What container escape vectors exist in new deployments?
+49. How to find database credentials in new logging systems?
+50. Where do new CDN configurations expose origin servers?
+
+## Automation & Tooling
+51. How to use differential analysis to find new vulnerabilities?
+52. What custom Burp extensions help find state-based flaws?
+53. How to automate detection of property exposure differences?
+54. Where can machine learning identify anomalous endpoint behavior?
+55. How to efficiently compare API versions for security gaps?
+
+These questions target the nuanced, complex vulnerabilities that separate advanced hunters from beginners.
