@@ -1,0 +1,39 @@
+Let me try to clarify the concept with an example.
+
+Imagine you're attacking a user object in a web application, and you want to understand which endpoints expose properties of that object. The user object can have different states, such as:
+
+* Active
+* Inactive
+* Deleted
+* Invited
+* Revoked
+* Banned
+
+Let's say there's an endpoint `/users/{userId}` that returns information about a user. Normally, this endpoint might be accessible to all users and returns public information.
+
+However, when the user object is in a specific state, such as "invited", hitting the same endpoint might expose additional properties, like an invitation token.
+
+For example:
+
+* When the user is active, the endpoint returns: $$ {"id": 1, "username": "john"} $$
+* When the user is invited, the endpoint returns: $$ {"id": 1, "username": "john", "invitationToken": "abc123"} $$
+
+In this case, the endpoint `/users/{userId}` exposes different properties of the user object depending on its state. If an attacker can iterate through different states of the user object and hit the same endpoint, they might be able to access sensitive information, like the invitation token.
+
+This can lead to zero-interaction attacks, such as account takeovers, if the attacker can use the exposed information to manipulate the user object.
+
+By documenting which endpoints expose which properties of an object and how they change depending on the object's state, you can identify potential vulnerabilities and creative attack vectors.
+
+Here are some key points:
+
+* Endpoints can expose different properties of an object depending on its state.
+* An attacker can iterate through different states of an object and hit the same endpoint to access sensitive information.
+* Documenting endpoint behavior and object states can help identify potential vulnerabilities.
+
+Example:
+
+* Endpoint: `/users/{userId}`
+* States: Active, Invited
+* Exposed properties:
+	+ Active: `id`, `username`
+	+ Invited: `id`, `username`, `invitationToken`
