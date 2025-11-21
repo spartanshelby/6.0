@@ -54,7 +54,7 @@ Systematic Approach to Find These
 2)Step 2: Find Endpoints for Each State /invite, /invitation, /pending, /activation
 Pro Tip for Bug Bounties- 	When you find ONE of these issues, immediately search for the pattern across the entire application:
 
-steps
+steps 1
 create no.of.user all possible states
 like self user=1
 invite user= 2
@@ -62,4 +62,5 @@ active user=3
 deleted user=4
 archived user=5
 
+step2
 then hit every possible endpoint with all states userid above
