@@ -68,3 +68,5 @@ like
 GET /api/invitations/2017   # 2017 is active user but get request for disclose
 GET /api/deleted-users/2018 # 2018 is invited user  but get request for disclose
 GET /api/suspended-users/2019 # 2019 is deleted user but get request for disclose
+
+not only with user roles try with projects like archived, deleted
