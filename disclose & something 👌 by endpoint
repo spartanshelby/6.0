@@ -63,8 +63,12 @@ deleted user=4
 archived user=5
 
 step2
-then hit every possible endpoint with all states userid above
-like
+then hit every possible endpoint with all states userid above 
+autorize/autorepeater set to use low privildged user while make request in high privlegd browsing. like below Get /invite requests
+
+step 3
+the above 200 results *may be* help here 
+then make a every single request with victim id
 GET /api/invitations/2017   # 2017 is active user but get request for disclose
 GET /api/deleted-users/2018 # 2018 is invited user  but get request for disclose
 GET /api/suspended-users/2019 # 2019 is deleted user but get request for disclose
