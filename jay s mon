@@ -1,3 +1,7 @@
+all the below is wrong because Monitoring for Modifications in Existing Code High Effort, Low Reward: 
+so monitor newly added js and edit below the methodology
+
+
 1)browse and capture request using bp
 2)go to tar tab seach .js with inscope only 
 3)if the .js file present in html as dynamic then use gap to find all js urls from .html files 
