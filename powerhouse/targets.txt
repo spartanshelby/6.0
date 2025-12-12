@@ -1,3 +1,0 @@
-# Add your target URLs here (one per line)
-https://example.com
-https://www.google.com
