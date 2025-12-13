@@ -3,11 +3,13 @@
 3)open browser check first session expires or not 
 4)then create a temporary project with burp and turn intercept on
 5)open allurls extension to load all urls
-6)find new js by compare with old one
-7)then only select new js and collect new endpoints,parameters (use linkfinder or if burpjslinkfinder try to grep new with some new trick)
+6)find new js by compare with old one  
+7)copy the new js urls and remove all scopes and paste all urls to scope (jslinkfinder find 3rd 4th level js)
+8)then only select new js and collect new endpoints,parameters 
 
 
-
+grep -Fxv -f fileold filenew
+Outputs only URLs that are in filenew but NOT in fileold
 
 
 
