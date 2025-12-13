@@ -1,3 +1,16 @@
+1)get all url from burpproject of target scope
+2)remove duplicates & save it into file 
+3)open browser check first session expires or not 
+4)then create a temporary project with burp and turn intercept on
+5)open allurls extension to load all urls
+6)find new js by compare with old one
+7)then only select new js and collect new endpoints,parameters (use linkfinder or if burpjslinkfinder try to grep new with some new trick)
+
+
+
+
+
+
 all the below is wrong because Monitoring for Modifications in Existing Code High Effort, Low Reward: 
 so monitor newly added js and edit below the methodology
 
