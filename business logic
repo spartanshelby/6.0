@@ -1,0 +1,62 @@
+https://youtu.be/PQeVDd2suVQ?si=64X4ZN3jYqWvym99
+
+This video, presented by Vishal Barot, provides a comprehensive look into Business Logic Error Vulnerabilities. These are flaws in the design and implementation of an application that lead to unintended behavior, often bypassing security controls without triggering traditional technical alerts.
+
+Here are the key topics and modules explained in the video:
+1. Introduction to Business Logic Errors [00:06]
+
+    Definition: Vulnerabilities arising from flaws in the design and implementation of application logic.
+
+    Detection: Extremely difficult to automate because tools cannot understand "intent." It requires a human to understand how a feature is supposed to work to identify when it's being abused.
+
+2. Common Vulnerability Types [00:53]
+
+    Race Conditions: Exploiting the timing of events (e.g., applying one coupon multiple times by sending requests simultaneously) [01:14].
+
+    Price Tampering: Manipulating parameters to buy expensive items for zero or minimal cost [02:45].
+
+    Paid Feature Bypass: Allowing a free user to access "Premium" functionalities (like seeing hidden profiles on dating apps) [03:06].
+
+3. Exploiting the "Cart" Feature [05:48]
+
+The speaker details several test cases for e-commerce carts:
+
+    Coupon Abuse: Guessing sequential coupon patterns (e.g., "FLAT30" to "FLAT50") or using employee-only coupons [07:08].
+
+    Item Restrictions: Applying a category-specific discount (e.g., Electronics) to an unintended item (e.g., Clothing) [08:31].
+
+    Bypassing Limits: Purchasing items below the minimum cart value or buying "out of stock" items by leaving them in the cart for long periods [10:44].
+
+    Delivery Fee Manipulation: Adding many items to hit free delivery, then canceling all but the cheapest one [13:03].
+
+4. Free User vs. Premium Account Bypasses [14:41]
+
+    Force Browsing: Manually entering "Premium" URLs while logged in as a free user [16:16].
+
+    Parameter Tampering: Changing values like premium=false to true in API requests or responses [16:47].
+
+    UI Manipulation: Inspecting and removing "disabled" or "hidden" CSS attributes from buttons to unlock features [21:00].
+
+    Mobile vs. Web: Checking if a feature restricted on the website is accidentally left open on the mobile app [18:42].
+
+5. Order Payment Vulnerabilities [24:32]
+
+    Price Identifier Manipulation: Instead of a simple "price" field, apps often use IDs. The speaker explains how to swap the ID of a cheap item with an expensive one during the payment flow [28:46].
+
+    Secondary Costs: Tampering with shipping, tax, or handling fee parameters if the main price is well-protected [24:49].
+
+6. Profile Privacy & UI/API Flaws [30:18]
+
+    Data Leakage: Even if a profile is set to "Private," sensitive links (like social media) might still be visible in the page's source code (View Source) [31:52].
+
+    Broken Link Hijacking: Claiming a deleted social media handle that a company still links to on their website footer [33:30].
+
+    Request Injection: Adding unintended text parameters to reports or comments to trick moderators [36:13].
+
+7. Pro Tips for Bug Hunters [38:43]
+
+    Understand Intent: Become a regular user of the app first to understand what should be restricted.
+
+    Sign-up Variations: Try signing up with COMPANY.COM (all caps) to bypass domain-specific restrictions [23:19].
+
+    Compare Accounts: If possible, buy a cheap premium plan to see exactly what APIs are triggered so you can try to replicate them as a free user
