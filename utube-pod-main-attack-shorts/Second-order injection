@@ -1,0 +1,5 @@
+https://www.youtube.com/shorts/8DC4_2V8yxU
+
+First-order injection: Your malicious input executes immediately on the same request.
+
+Second-order injection: Your malicious input is stored safely now, but executes later in a different context where the developer forgot to sanitize it.
