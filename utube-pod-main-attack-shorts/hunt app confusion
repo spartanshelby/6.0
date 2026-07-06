@@ -1,0 +1,20 @@
+https://youtu.be/H7AjEMqcXNY
+
+What happens when you feed the app a value the developer never expected. Your ID as null, your ID as undefined in JavaScript apps.
+The victim's ID dropped into a field that was never meant to hold a user ID at all. And watch this one carefully.
+If I can't exchange my ID and see the victim's data, fine. Every developer blocks that. 
+But what if I publish a photo where the publisher field is already the victim's ID, not my ID swapped with theirs on my own profile,
+their ID in a field that was never supposed to accept my input. Maybe my photo now shows up on their profile. Maybe when someone reports that photo,
+the victim gets the email. Maybe the permission system now treats them as the owner and me as nobody. Maybe sharing that photo...
+
+That is a creative move. You are not trying to bypass a check. You are trying to feed the app requests it doesn't know how to categorize.
+When the app is confused, we get bugs because confused code doesn't know which rule to apply. Confused code takes the path of least resistance.
+Confused code trusts the nearest value it can find. Every one of those resolutions is an unintended behavior the developer never thought about. 
+And look, I'm not telling you to hunt IDORs specifically. I love broken access controls, but the message here is not "go hunt IDORs."
+The message is that understanding what you are dealing with without getting confused yourself is what makes these bugs show themselves.
+You stop hunting for IDORs as a payload you throw at a thing and you start hunting for confusion. Stop trying to bypass one check. 
+Start trying to make the app unsure which check to draw. Do this enough times and something shifts. Understanding the app builds a...
+
+
+
+This is a mindset shift: **hunt confusion, not just vulnerabilities**. Feed the app values and structures it has no clear rule for, and watch where it resolves ambiguously.
