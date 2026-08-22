@@ -76,3 +76,22 @@ https://bensaad0.medium.com/breaking-business-logic-in-major-blockchain-infrastr
 {"productIds": [1]}
 I sent:
 { "productIds": [1,1,1,1,1,1,1,1] }
+
+#######$$$$$$$$$$$$$%%&
+https://strangerwhite.medium.com/how-i-found-an-account-lockout-vulnerability-without-any-tools-f52cbcd58730
+Main Site (target.com): Featured a sign-up form asking for:
+Username
+Name
+Email
+Password
+
+Learning Subdomain (course.target.com): This sub-domain had its own, simpler sign-up process, asking for just:
+Email
+Password
+Everything seemed
+
+then GOTO course.target.com to register somethinhg@mail.com 
+goto target.com and register username as something@gmail.com
+account lockup
+
+
