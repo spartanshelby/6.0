@@ -60,3 +60,19 @@ The speaker details several test cases for e-commerce carts:
     Sign-up Variations: Try signing up with COMPANY.COM (all caps) to bypass domain-specific restrictions [23:19].
 
     Compare Accounts: If possible, buy a cheap premium plan to see exactly what APIs are triggered so you can try to replicate them as a free user
+
+@@@@@@@***""""""*
+Read “Business Logic Flaw Allows Delegated Users to Hide Messages Using Archive & Trash States“ by Mohamed Abdelmoatie (3at3ot) on Medium: 
+https://medium.com/@moatymohamed897/business-logic-flaw-allows-delegated-users-to-hide-messages-using-archive-trash-states-1acd5d1227bd
+If trash = true → the message goes to Trash
+
+If both archive = false and trash false the message goes to Inbox
+
+Everything worked as expected.What happens if a message is archived and trashed at the same time?
+
+#%@&@+(@(#))$
+
+https://bensaad0.medium.com/breaking-business-logic-in-major-blockchain-infrastructure-provider-1962827ec5d0
+{"productIds": [1]}
+I sent:
+{ "productIds": [1,1,1,1,1,1,1,1] }
