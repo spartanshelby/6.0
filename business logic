@@ -101,3 +101,16 @@ change current email address to the one invited now we have one more users slot.
 . then chnage current email to old email
 
 ##$%%%@@$%&-&
+https://medium.com/@hgr00x/unauthorized-privilege-via-email-pattern-1d3b7b7feb58
+register with admin@target.com to access admin account
+invite admin@target.com and change email to my email to ato
+
+*#@$@%#&-$-$--$-$-
+https://mrzki.medium.com/bugbounty-how-do-i-get-a-premium-tier-account-without-paying-a-penny-767921a6c4e4
+always guess json body with param miner
+POST/api/register/ HTTP/1.1
+
+{email,password,username,notification}
+request after I run param miner and found hidden parameter plantype and this upgrade account to premium without paying a penny
+{planType": "premium"
+}
