@@ -121,3 +121,10 @@ add to cart url/next=https://www.redact.com/cart?sku=0000000 then lfi ?sku=../..
 always try to lfi to get coupons
 
 @@@@@@@@@@@@
+https://aidilarf.medium.com/part-2-anyone-can-use-unlimited-trial-premium-on-accounts-that-have-used-trial-premium-before-b1ac65c9a2d6
+We make a request by removing 2 parameters, namely:1. "optionalPricelds": [6455991]
+2. "serviceldSwitchingFrom" :361572676
+And we get a total order of IDR 0.00 back
+remove parameters to price cut 
+
+@@@@@@@@@@@@@
