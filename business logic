@@ -132,3 +132,12 @@ https://medium.com/@ahmedhamed404/its-still-working-4a78b3fa2f82
 featured called team password_change_interval_duration with use_lock_5times_wrong
 we try to chnage to value 0 all user get force reset
 also try to change value to null after team patched it by allowing only safe values: 30, 90, 180, or 365📌.
+
+@@@@@@@@@@@@@
+https://0xsom3a.medium.com/business-logic-error-leads-to-unauthorized-privilege-downgrade-of-report-owner-d34fcb43e0f3
+anything with share option permission management in team 
+then share same owner with modify 
+then share owner with read only
+what if the two roles seperately to same user id.
+
+@@@@@@@@@@@@@
