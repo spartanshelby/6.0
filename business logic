@@ -128,3 +128,7 @@ And we get a total order of IDR 0.00 back
 remove parameters to price cut 
 
 @@@@@@@@@@@@@
+https://medium.com/@ahmedhamed404/its-still-working-4a78b3fa2f82
+featured called team password_change_interval_duration with use_lock_5times_wrong
+we try to chnage to value 0 all user get force reset
+also try to change value to null after team patched it by allowing only safe values: 30, 90, 180, or 365📌.
